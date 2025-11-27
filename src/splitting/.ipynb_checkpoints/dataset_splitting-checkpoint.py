@@ -4,6 +4,7 @@ from collections import defaultdict
 from random import shuffle
 from src.utils.subject_utils import get_patient_images_v2, sample_patients
 import random
+from glob import glob
 
 
 def split_data(input_dir, output_dir, train_ratio=0.70, val_ratio=0.15, test_ratio=0.15):
@@ -308,3 +309,70 @@ def split_data_2datasets(input_dir, output_dir, train_ratio=0.70, val_ratio=0.15
     print(f"  Train set: {len(train_files)} samples ({len(train_patients)} patients)")
     print(f"  Validation set: {len(val_files)} samples ({len(val_patients)} patients)")
     print(f"  Test set: {len(test_files)} samples ({len(test_patients)} patients)")
+    
+
+def count_images_per_target_stage_TNM(image_dir, df, stage_col):
+    """
+    Conta o número de imagens por classe de um determinado estágio (T/N/M).
+
+    Args:
+        image_dir (str): Caminho para a pasta com imagens (.jpg).
+        df (pd.DataFrame): DataFrame com colunas ['PatientID', 'T-Stage', 'N-Stage', 'M-Stage'].
+        stage_col (str): Nome da coluna alvo ('T-Stage', 'N-Stage' ou 'M-Stage').
+
+    Returns:
+        dict: Contagem de imagens por classe do estágio.
+    """
+    df = df.copy()
+    df[stage_col] = df[stage_col].astype(str)
+
+    stage_counts = defaultdict(int)
+
+    image_paths = glob(os.path.join(image_dir, '*.jpg'))
+
+    for img_path in image_paths:
+        patient_id = extract_patient_id(img_path)
+        if patient_id and patient_id in df['PatientID'].values:
+            stage_value = df.loc[df['PatientID'] == patient_id, stage_col].values[0]
+            stage_counts[stage_value] += 1
+
+    return dict(stage_counts)
+
+
+def count_images_per_TMN_combination(image_dir, df):
+    """
+    Conta o número de imagens por combinação de T-Stage, N-Stage e M-Stage.
+
+    Args:
+        image_dir (str): Caminho para a pasta com imagens (.jpg).
+        df (pd.DataFrame): DataFrame com colunas ['PatientID', 'T-Stage', 'N-Stage', 'M-Stage'].
+
+    Returns:
+        dict: Contagem de imagens por combinação (T, N, M).
+    """
+    df = df.copy()
+    df = df[df['PatientID'].notna()]
+    df[['T-Stage', 'N-Stage', 'M-Stage']] = df[['T-Stage', 'N-Stage', 'M-Stage']].astype(str)
+
+    combo_counts = defaultdict(int)
+    image_paths = glob(os.path.join(image_dir, '*.jpg'))
+
+    for img_path in image_paths:
+        patient_id = extract_patient_id(img_path)
+        if patient_id and patient_id in df['PatientID'].values:
+            row = df[df['PatientID'] == patient_id].iloc[0]
+            combo = (row['T-Stage'], row['N-Stage'], row['M-Stage'])
+            combo_counts[combo] += 1
+
+    return dict(combo_counts)
+
+
+def extract_patient_id(filename):
+    name = os.path.splitext(os.path.basename(filename))[0]
+    match = re.match(r'^([ABEG]\d{3,4})_', name)
+    if match:
+        return match.group(1)
+    match = re.match(r'^[EG]_(LUNG\d+-\d+)_', name)
+    if match:
+        return match.group(1)
+    return None
