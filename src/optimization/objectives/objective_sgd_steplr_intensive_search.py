@@ -10,6 +10,7 @@ from sklearn.metrics import accuracy_score, precision_recall_fscore_support
 from training.reproducibility import set_seed
 from dataloading.dataloader import create_dataloader
 
+
 def objective_sgd_steplr_intensive_search(trial):
     # Set seed for trial reproducibility
     set_seed(42)

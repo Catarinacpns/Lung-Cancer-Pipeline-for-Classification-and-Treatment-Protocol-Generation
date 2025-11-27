@@ -1,0 +1,11 @@
+{
+    "learning_rate": 1.035046459447574e-06,
+    "batch_size": 32,
+    "weight_decay": 0.0006775499840802566,
+    "trainable_layers": 4,
+    "dropout_rate": 0.20144072044874892,
+    "label_smoothing": 0.07199073214843173,
+    "momentum": 0.9474227002735129,
+    "step_size": 16,
+    "gamma": 0.5763511540167814
+}

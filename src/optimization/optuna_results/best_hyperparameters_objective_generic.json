@@ -1,0 +1,13 @@
+{
+    "learning_rate": 1.3788939487801654e-05,
+    "batch_size": 16,
+    "weight_decay": 0.0022593474031394286,
+    "trainable_layers": 3,
+    "dropout_rate": 0.15066989041838022,
+    "optimizer": "SGD",
+    "scheduler": "StepLR",
+    "label_smoothing": 0.1165395758341762,
+    "momentum": 0.7961977213986026,
+    "step_size": 4,
+    "gamma": 0.6177769059141647
+}

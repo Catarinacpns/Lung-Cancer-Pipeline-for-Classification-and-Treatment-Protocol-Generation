@@ -1,0 +1,12 @@
+{
+    "learning_rate": 0.0005821478118398969,
+    "batch_size": 16,
+    "weight_decay": 0.0041333207643184594,
+    "trainable_layers": 2,
+    "dropout_rate": 0.28539857230730103,
+    "optimizer": "Adam",
+    "scheduler": "ReduceLROnPlateau",
+    "label_smoothing": 0.09793270039588307,
+    "factor": 0.4447189511928628,
+    "patience": 3
+}

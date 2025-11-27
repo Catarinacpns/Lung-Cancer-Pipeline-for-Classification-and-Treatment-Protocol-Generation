@@ -1,0 +1,12 @@
+{
+    "learning_rate": 4.8733423774825025e-06,
+    "batch_size": 16,
+    "weight_decay": 0.004493403189321242,
+    "trainable_layers": 4,
+    "dropout_rate": 0.29000000000000004,
+    "scheduler": "StepLR",
+    "label_smoothing": 0.04811257676075818,
+    "momentum": 0.9433103253272241,
+    "step_size": 5,
+    "gamma": 0.5417209163329839
+}

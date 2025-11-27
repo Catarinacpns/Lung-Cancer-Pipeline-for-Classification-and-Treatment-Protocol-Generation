@@ -1,0 +1,13 @@
+{
+    "learning_rate": 2.1930485556643678e-05,
+    "batch_size": 32,
+    "weight_decay": 0.0008536189862866829,
+    "trainable_layers": 4,
+    "dropout_rate": 0.21092275383467413,
+    "optimizer": "SGD",
+    "scheduler": "CosineAnnealingLR",
+    "label_smoothing": 0.1363980603118173,
+    "momentum": 0.8491681965040032,
+    "T_max": 20,
+    "eta_min": 1.627384272838114e-05
+}

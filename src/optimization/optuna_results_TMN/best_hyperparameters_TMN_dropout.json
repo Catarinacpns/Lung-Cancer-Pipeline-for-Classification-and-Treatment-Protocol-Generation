@@ -1,0 +1,15 @@
+{
+    "learning_rate": 3.551554863393257e-06,
+    "batch_size": 32,
+    "weight_decay": 0.0020546182417162046,
+    "trainable_layers": 4,
+    "dropout_rate": 0.30284407179185346,
+    "dropout_rate_RN50": 0.3177308911662098,
+    "optimizer": "RMSprop",
+    "scheduler": "ReduceLROnPlateau",
+    "label_smoothing": 0.2442939982730896,
+    "hidden_units": 256,
+    "num_fc_layers": 2,
+    "factor": 0.1812699712112874,
+    "patience": 2
+}
