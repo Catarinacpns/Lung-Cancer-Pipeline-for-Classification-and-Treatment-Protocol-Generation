@@ -2,6 +2,9 @@
 # GITIGNORE PARA PROJETOS DE DEEP LEARNING
 # TCIA, DICOM, YOLO, MODELS, NOTEBOOKS
 # ==========================================
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
 
 # ---- DATA (IGNORAR SEMPRE) ----
 data/raw/
