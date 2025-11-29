@@ -2,7 +2,7 @@ import pickle
 import pydicom as dicomio
 import os
 from collections import Counter
-
+import zipfile
 
 def load_dataset(file_path):
     with open(file_path, 'rb') as file:
@@ -85,3 +85,30 @@ def update_label_files(label_dir, histology_class_map):
                     f.write("\n".join(updated_lines) + "\n")
 
                 print(f"Updated: {filename}")
+                
+def zip_directory(directory_path, output_zip_path=None):
+    """
+    Zips the contents of a directory into a zip file.
+
+    :param directory_path: Path to the directory to be zipped.
+    :param output_zip_path: Path to save the output zip file. If None, saves in the same directory.
+    :return: Path to the created zip file.
+    """
+    if not os.path.isdir(directory_path):
+        raise ValueError(f"Error: The directory '{directory_path}' does not exist or is not a directory.")
+
+    # Default zip file name based on the directory name
+    if output_zip_path is None:
+        output_zip_path = os.path.join(os.path.dirname(directory_path), f"{os.path.basename(directory_path)}.zip")
+
+    # Create the zip file
+    with zipfile.ZipFile(output_zip_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
+        for root, _, files in os.walk(directory_path):
+            for file in files:
+                file_path = os.path.join(root, file)
+                # Preserve folder structure inside the zip
+                arcname = os.path.relpath(file_path, start=directory_path)
+                zipf.write(file_path, arcname)
+
+    print(f"Directory '{directory_path}' successfully zipped to '{output_zip_path}'")
+    return output_zip_path
