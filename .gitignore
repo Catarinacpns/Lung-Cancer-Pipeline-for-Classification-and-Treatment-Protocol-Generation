@@ -96,3 +96,7 @@ yolo/
 *.npy
 *6176bae3
 *countrycode
+ragas_set_up.py
+gemini_2flash.py
+gpt4omini.py
+env.txt

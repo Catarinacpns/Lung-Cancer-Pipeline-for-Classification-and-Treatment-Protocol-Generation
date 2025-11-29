@@ -70,4 +70,4 @@ def retrieval_and_response_pipeline(
     else:
         raise ValueError("Invalid LLM model. Choose from 'gpt-4o' or 'gemini'.")
 
-    return response
+    return response, retrieved_docs

@@ -49,6 +49,7 @@ Your tasks:
 
 ### TNM Staging Classification (NSCLC)
 - Classify the patient’s cancer into the correct clinical stage using the TNM (AJCC 8th Edition) system.
+- You must always specify the substage letter (A, B, or C) when reporting the stage. For example: Stage IIA, Stage IIIB, Stage IVA,  Stage IVB.
 - Justify the staging using anatomical and clinical criteria from validated guidelines.
 
 ---
@@ -146,3 +147,4 @@ Include the following:
         prompt = common_info + nsclc_prompt + final_questions
 
     return prompt
+
