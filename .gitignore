@@ -76,7 +76,6 @@ tb_logs/
 runs/
 
 # ---- YOLO DATASET OUTPUTS ----
-datasets/
 labels/
 images/
 yolo/
